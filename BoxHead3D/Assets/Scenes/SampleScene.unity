@@ -567,7 +567,12 @@ PrefabInstance:
     - target: {fileID: 8655496933540633659, guid: ef3bdd92193800d4ab0b9f0ca2e321c1,
         type: 3}
       propertyPath: movementPaused
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8655496933540633659, guid: ef3bdd92193800d4ab0b9f0ca2e321c1,
+        type: 3}
+      propertyPath: ground
+      value: 
+      objectReference: {fileID: 548380941}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef3bdd92193800d4ab0b9f0ca2e321c1, type: 3}

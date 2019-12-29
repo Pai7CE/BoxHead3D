@@ -2,52 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public  class PlayerController  : EntitiyController
 {
 
     CharacterController characterController;
-    Transform entitiyTransform;
+    Transform transformEntity;
+
+    public float speed = 6.0f;
     
-    IEnumerator entitiyRotation()
+    private Vector3 moveDirection = Vector3.zero;
+
+
+    IEnumerator EntitiyRotation()
     {
         while (true)
         {
-            Vector3 oldPos = entitiyTransform.position;
+            Vector3 oldPos = transformEntity.position;
             yield return new WaitForEndOfFrame();
-            Vector3 newPos = entitiyTransform.position;
+            Vector3 newPos = transformEntity.position;
             Vector3 heading = (newPos - oldPos).normalized;
-            float yRotation = Vector3.Angle(Vector3.forward, heading);
-            if(Input.GetAxis("Horizontal") > 0) {
-                entitiyTransform.eulerAngles = new Vector3(0,yRotation,0);
-            }
-            else
+            if (heading != Vector3.zero)
             {
-                entitiyTransform.eulerAngles = new Vector3(0, -yRotation, 0);
+                float yRotation = Vector3.Angle(Vector3.forward, heading);
+                if (Input.GetAxis("Horizontal") > 0)
+                {
+                    transformEntity.eulerAngles = new Vector3(0, yRotation, 0);
+                }
+                else
+                {
+                    transformEntity.eulerAngles = new Vector3(0, -yRotation, 0);
+                }
+                //print(yRotation);
             }
-            print(yRotation);
 
         }
     }
-    
-    public float speed = 6.0f;
-    
 
-    private Vector3 moveDirection = Vector3.zero;
+
     void Start()
     {
         characterController = gameObject.GetComponent<CharacterController>();
-        entitiyTransform = gameObject.GetComponent<Transform>();
-        StartCoroutine(entitiyRotation());
+        transformEntity = gameObject.GetComponent<Transform>();
+        StartCoroutine(EntitiyRotation());
     }
 
     // Update is called once per frame
     void Update()
     {
         movement();
-        rotation();
     }
 
-    public void movement()
+    public override void movement()
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
         moveDirection *= speed;
