@@ -8,6 +8,8 @@ public  class PlayerController  : EntitiyController
     CharacterController characterController;
     Transform transformEntity;
 
+
+    public int health = 100;
     public float speed = 6.0f;
     
     private Vector3 moveDirection = Vector3.zero;

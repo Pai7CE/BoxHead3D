@@ -16,7 +16,7 @@ public class EnemyController : EntitiyController
 
     private Vector3 heading = Vector3.zero;
     private Vector3 moveDirection = Vector3.zero;
-
+    private float health = 50;
     IEnumerator EntitiyRotation()
     {
         while (true)
@@ -25,12 +25,9 @@ public class EnemyController : EntitiyController
             yield return new WaitForEndOfFrame();
             Vector3 newPos = transformEntity.position;
             Vector3 heading = (newPos - oldPos).normalized;
-            print(heading);
             if (heading != Vector3.zero)
             {
                 float yRotation = Vector3.Angle(new Vector3(0,0,1), heading);
-                print(heading);
-                print(yRotation);
                 if(heading.x > 0)
                 {
                     transformEntity.eulerAngles = new Vector3(0, yRotation, 0);
@@ -38,12 +35,7 @@ public class EnemyController : EntitiyController
                 else
                 {
                     transformEntity.eulerAngles = new Vector3(0, -yRotation, 0);
-                }
-                    //transformEntity.eulerAngles = new Vector3(0, yRotation, 0);
-               
-                    //transformEntity.eulerAngles = new Vector3(0, -yRotation, 0);
-               
-                
+                }                               
             }
 
         }
@@ -73,5 +65,16 @@ public class EnemyController : EntitiyController
         moveDirection *= speed;
 
         characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    public void reduceHealth()
+    {
+        health -= 20;
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        print(health);
     }
 }
