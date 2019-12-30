@@ -219,5 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  target: {fileID: 0}
+  target: {fileID: 7588923798523960157, guid: 7a0d4059f1c1ebb41a8db087180ca910, type: 3}
   movementPaused: 0
+  ground: {fileID: 0}

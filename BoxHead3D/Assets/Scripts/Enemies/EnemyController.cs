@@ -11,7 +11,6 @@ public class EnemyController : EntitiyController
     public float speed = 6.0f;
     public GameObject target;
     public bool movementPaused;
-    public Transform ground;
 
 
     private Vector3 heading = Vector3.zero;
@@ -75,6 +74,5 @@ public class EnemyController : EntitiyController
         {
             Destroy(gameObject);
         }
-        print(health);
     }
 }
